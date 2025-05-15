@@ -31,6 +31,7 @@ const tabuleiro = document.getElementById('tabuleiro');
 for (let i = 0; i < 100; i++) {
   const celula = document.createElement('div');
   celula.classList.add('celula');
+  celula.dataset.posicao = i;
   tabuleiro.appendChild(celula);
 }
 gerarCoordenadas();
@@ -75,6 +76,7 @@ document.querySelectorAll('.celula').forEach(celula => {
     const tokenArrastado = document.querySelector('.dragging');
     if (tokenArrastado && !celula.querySelector('.token')) {
       celula.appendChild(tokenArrastado);
+      salvarEstado();
     }
   });
 });
@@ -111,6 +113,7 @@ function salvarEstado() {
     const token = celula.querySelector('.token');
     if (token) {
       estado.tokens.push({
+        posicao: parseInt(celula.dataset.posicao),
         posicao: index,
         tipo: token.textContent,
         corBorda: token.style.borderColor,
@@ -135,7 +138,7 @@ function carregarEstado() {
   
   // Carrega tokens
   estado.tokens.forEach(({ posicao, tipo, corBorda, sombra }) => {
-    const celula = document.querySelectorAll('.celula')[posicao];
+    const celula = document.querySelector(`.celula[data-posicao="${posicao}"]`);
     if (celula && !celula.querySelector('.token')) {
       const token = document.createElement('div');
       token.className = 'token';
