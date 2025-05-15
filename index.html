@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nightfall RPG – Tabuleiro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Nightfall RPG – Tabuleiro Virtual</h1>
+  </header>
+
+  <main>
+    <section id="controle">
+      <!--Seletor de Cenario-->
+      <div class="cenario-opcoes">
+        <div class="cenario-btn ativo" style="background-image: url('./img/Caverna.jpeg')" onclick="mudarCenario('Caverna')"></div>
+        <div class="cenario-btn" style="background-image: url('./img/cidade.jpeg')" onclick="mudarCenario('Cidade')"></div>
+        <div class="cenario-btn" style="background-image: url('./img/Floresta.jpeg')" onclick="mudarCenario('Floresta')"></div>
+        <div class="cenario-btn" style="background-image: url('./img/Rio.jpeg')" onclick="mudarCenario('Rio')"></div>
+        <div class="cenario-btn" style="background-image: url('./img/ruinas.jpeg')" onclick="mudarCenario('Ruinas')"></div>
+      </div>
+      <!-- Botões ou seletores de personagem vão aqui -->
+      <select id="seletorPersonagem">
+        <option value="🧙">Mago</option>
+        <option value="🧛">Vampiro</option>
+        <option value="🐺">Lobisomen</option>
+        <option value="🙍🏽‍♂️">Humano</option>
+        <option value="🤖">BackUp</option>
+        <option value="👹">Critatura</option>
+        <option value="🐲">Boss</option>
+      </select>
+      <br><br>
+
+      <div class="controle-remocao">
+        <button onclick="ativarModoRemocao()" id="btnIniciarRemocao">Remover Tokens</button>
+        <button onclick="desativarModoRemocao()" id="btnConcluirRemocao" style="display: none;">Concluir Remoção</button>
+        <button onclick="limparTabuleiro()">Limpar Tabuleiro</button>
+      </div>
+
+      <button onclick="adicionarToken()">Adicionar Token</button>
+      
+    </section>
+
+    <section id="tabuleiro">
+      <!-- O grid será gerado dinamicamente via JS -->
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Nightfall RPG. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

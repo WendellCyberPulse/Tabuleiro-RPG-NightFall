@@ -1,0 +1,256 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-image: url(./img/fundo.png);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  header {
+    background-color: #1a1a1a;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #444;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+    color: #f05454;
+    text-shadow: 1px 1px #000;
+    letter-spacing: 1px;
+  }
+  
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  #controle {
+    margin-bottom: 20px; 
+  }
+  
+  button {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background-color: #555;
+  }
+  
+  #tabuleiro {
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(10, 50px);
+    gap: 2px;
+    border: 2px solid #333;
+    background-image: url('./img/Caverna.jpeg'); /* <- aqui entra a imagem */
+    background-size: 520px 520px;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+    background-position: absolute;
+    align-self: center;
+  }
+
+  .cenario-opcoes {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .cenario-btn {
+    width: 80px;
+    height: 60px;
+    border: 2px solid #444;
+    cursor: pointer;
+    transition: transform 0.2s;
+    background-size: cover;
+  }
+  
+  .cenario-btn:hover {
+    transform: scale(1.1);
+  }
+  
+  .cenario-btn.ativo {
+    border-color: #f05454;
+    box-shadow: 0 0 8px #f05454;
+    border-color: #f05454 !important;
+  }
+  
+  .celula {
+    width: 50px;
+    height: 50px;
+    background-color: #2e2e2e1e;
+    border: 1px solid #444444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    position: relative;
+  }
+  
+  .celula:hover {
+    background-color: #3a3a3a;
+    cursor: pointer;
+  }
+  
+  .token {
+    /* Alterado para exibir emojis */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background-color: #333;
+    cursor: grab;
+  }
+  
+  .token:active {
+    cursor: grabbing;
+  }
+  
+  #seletorPersonagem {
+    background: #333;
+    color: white;
+    padding: 8px;
+    border: 1px solid #555;
+    margin-right: 10px;
+    border-radius: 4px;
+  }
+  
+  footer {
+    background-color: #1a1a1a;
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid #444;
+    font-size: 0.8rem;
+  }
+  
+  /* Coordenadas */
+/* COORDENADAS - VERSÃO OTIMIZADA */
+.grid-coordenadas {
+  position: relative;
+  display: inline-block;
+  margin: 2rem auto;
+}
+
+.colunas-labels {
+  position: absolute;
+  top: -27px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5px; /* Compensação precisa */
+}
+
+.colunas-labels div {
+  width: 50px;
+  text-align: center;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.linhas-labels {
+  position: absolute;
+  left: -28px;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px 0; /* Compensação precisa */
+}
+
+.linhas-labels div {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 14px;
+  color: #6d6d6d;
+  width: 25px;
+}
+
+/* AJUSTES FINOS PARA ALINHAMENTO PERFEITO */
+.colunas-labels div:first-child { margin-left: -1px; }
+.colunas-labels div:last-child { margin-right: -2px; }
+.linhas-labels div:first-child { margin-top: -1px; }
+.linhas-labels div:last-child { margin-bottom: -2px; }
+
+.zoom-controle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1a1a1a;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.zoom-controle button {
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  font-weight: bold;
+}
+
+/* Controles de remoção */
+.controle-remocao {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.controle-remocao button {
+  background-color: #4a0000;
+  border-color: #800;
+}
+
+.controle-remocao button:hover {
+  background-color: #6a0000;
+}
+
+/* Modo de remoção ativo */
+.modo-remocao .token {
+  filter: brightness(1.5);
+  cursor: pointer;
+  animation: pulsar-perigo 0.8s infinite;
+}
+
+@keyframes pulsar-perigo {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+#btnConcluirRemocao {
+  background-color: #004d00 !important;
+  border-color: #00aa00 !important;
+  animation: pulsar-conclusao 1s infinite;
+}
+
+@keyframes pulsar-conclusao {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
